@@ -1,5 +1,6 @@
 const question = document.getElementById("question")
 const choicesContainer = document.getElementById("choices")
+let acceptingAnswers = false;
 let questions = [];
 let availableQuestions = [];
 let currentQuestion = {};
@@ -40,7 +41,7 @@ function startGame(){
 }
 
 function getNextQuestion(){
-
+    acceptingAnswers = true;
     // check end/win conditions
     if(questionCount === 10){
         // save score to local storage
@@ -77,6 +78,10 @@ function getNextQuestion(){
         
         // add event listener
         choice.addEventListener('click', event => {
+            // prevents user from selecting more than 1 answer
+            if (!acceptingAnswers) return;
+            acceptingAnswers = false;
+            
             // reveal correct answer
             let choices = Array.from(document.getElementsByClassName("choice-text"));
             choices.forEach(choice => {
