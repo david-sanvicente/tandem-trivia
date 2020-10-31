@@ -3,6 +3,7 @@ let choices = Array.from(document.getElementsByClassName("choice"))
 let questions = [];
 let availableQuestions = [];
 let currentQuestion = {};
+let questionCount = 0;
 let score = 0;
 
 fetch('Apprentice_TandemFor400_Data.json')
@@ -39,6 +40,14 @@ function startGame(){
 }
 
 function getNextQuestion(){
+    // check end/win conditions
+    if(questionCount === 10){
+        // save score to local storage
+        localStorage.setItem('score', score)
+        // return to end screen
+        return window.location.assign('/end.html');
+    }
+
     // gets the next question at random
     const rand = Math.floor(Math.random() * availableQuestions.length)
 
@@ -55,13 +64,16 @@ function getNextQuestion(){
     for(let i = 0; i < 4; i++){
         choices[i].innerText = currentQuestion.choices[i];
     }
+    // add to question count
+    questionCount++;
 }
 
 // add event listeners
 choices.forEach(choice => {
     choice.addEventListener('click', event => {
         // if choice correct, increase score
-        if(event.target.dataset["number"] == currentQuestion.answer){ score++ };
+        if(event.target.dataset["number"] == currentQuestion.answer + 1){ score++ };
+
         getNextQuestion();
     })
 });
