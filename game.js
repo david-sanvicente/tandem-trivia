@@ -45,7 +45,7 @@ function getNextQuestion(){
         // save score to local storage
         localStorage.setItem('score', score)
         // return to end screen
-        return window.location.assign('/end.html');
+        return window.location.assign("/end.html");
     }
 
     // gets the next question at random
