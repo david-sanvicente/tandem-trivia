@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Let's Play!</title>
+    <link rel="stylesheet" href="app.css"/>
+    <link rel="stylesheet" href="game.css">
 </head>
 <body>
     <div class="container">
-        <h2 id="question">What is the answer to this question?</h2>
-        <div id="choices" class="choices">
-            <!-- <p class="choice" data-number="1">Choice 1</p>
-            <p class="choice" data-number="2">Choice 2</p>
-            <p class="choice" data-number="3">Choice 3</p>
-            <p class="choice" data-number="4">Choice 4</p> -->
+        <div id="game" class="justify-center flex-column">
+            <h2 id="question">What is the answer to this question?</h2>
+            <div id="choices" class="choice-container"></div>
         </div>
     </div>
     <script src="game.js"></script>

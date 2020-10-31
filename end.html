@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thanks for Playing!</title>
+    <link rel="stylesheet" href="app.css">
 </head>
 <body>
-    <h1>Thanks for Playing!</h1>
-    <h2>Your score was</h2><span><h2 id="showScore">0</h2></span>
-    <a href="/game.html">Play Again?</a>
+
+    <div class="container">
+        <div id="end" class="flex-center flex-column">
+            <h1>Thanks for Playing!</h1>
+            <h2>Your score was</h2>
+            <h2 id="showScore">0</h2>
+            <a class="btn" href="/game.html">Play Again?</a>
+        </div>
+    </div>
+
     <script src="end.js"></script>
 </body>
 </html>

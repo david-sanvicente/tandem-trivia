@@ -73,7 +73,8 @@ function getNextQuestion(){
         const choice = document.createElement("p");
         choice.innerText = currentQuestion.choices[i];
         choice.dataset.number = i + 1;
-
+        choice.classList.add("choice-text");
+        
         // add event listener
         choice.addEventListener('click', event => {
             // if choice correct, increase score
