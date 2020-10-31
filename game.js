@@ -45,7 +45,8 @@ function getNextQuestion(){
     // sets as current question
     currentQuestion = availableQuestions[rand];
 
-    // physically removes element from array
+    // prevent questions from repeating
+    // physically remove element from array
     availableQuestions.splice(rand, 1)
 
     // put it on the screen
@@ -55,5 +56,17 @@ function getNextQuestion(){
         choices[i].innerText = currentQuestion.choices[i];
     }
 
-    console.log(currentQuestion)
+    // console.log(currentQuestion)
 }
+
+// add event listeners
+choices.forEach(choice => {
+    choice.addEventListener('click', event => {
+        // console.log(event.target.dataset["number"], currentQuestion.answer + 1)
+        if(event.target.dataset["number"] == currentQuestion.answer){
+            console.log(true)
+        } else {
+            console.log(false)
+        }
+    })
+});
