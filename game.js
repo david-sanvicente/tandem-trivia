@@ -1,4 +1,5 @@
 const question = document.getElementById("question")
+const choicesContainer = document.getElementById("choices")
 let questions = [];
 let availableQuestions = [];
 let currentQuestion = {};
@@ -39,7 +40,6 @@ function startGame(){
 }
 
 function getNextQuestion(){
-    const choices = document.getElementById("choices")
 
     // check end/win conditions
     if(questionCount === 10){
@@ -50,8 +50,8 @@ function getNextQuestion(){
     }
     
     // clear previous choices
-    while(choices.lastChild){
-        choices.removeChild(choices.lastChild)
+    while(choicesContainer.lastChild){
+        choicesContainer.removeChild(choicesContainer.lastChild)
     }
 
     // gets the next question at random
@@ -77,14 +77,35 @@ function getNextQuestion(){
         
         // add event listener
         choice.addEventListener('click', event => {
-            // if choice correct, increase score
-            if(event.target.dataset["number"] == currentQuestion.answer + 1){ score++ };
+            // reveal correct answer
+            let choices = Array.from(document.getElementsByClassName("choice-text"));
+            choices.forEach(choice => {
+                if(choice.dataset["number"] == currentQuestion.answer + 1){
+                    choice.classList.add("correct");
+                    setTimeout(()=>{
+                        choice.classList.remove("correct");
+                    }, 1000)
+                }
+            })
 
-            getNextQuestion();
+            // if choice correct, increase score
+            if(event.target.dataset["number"] == currentQuestion.answer + 1){
+                score++ 
+                event.target.classList.add("correct")
+            } else {
+                event.target.classList.add("incorrect")
+            };
+
+            setTimeout(() => {
+                event.target.parentElement.classList.remove("correct");
+                getNextQuestion();
+            }, 1000);
+
+            
         })
 
         // add to parent "choices"
-        choices.appendChild(choice)
+        choicesContainer.appendChild(choice)
     }
 
     questionCount++;
