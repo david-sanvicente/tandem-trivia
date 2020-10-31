@@ -1,5 +1,4 @@
 const question = document.getElementById("question")
-let choices = Array.from(document.getElementsByClassName("choice"))
 let questions = [];
 let availableQuestions = [];
 let currentQuestion = {};
@@ -40,12 +39,19 @@ function startGame(){
 }
 
 function getNextQuestion(){
+    const choices = document.getElementById("choices")
+
     // check end/win conditions
     if(questionCount === 10){
         // save score to local storage
         localStorage.setItem('score', score)
         // return to end screen
         return window.location.assign("/end.html");
+    }
+    
+    // clear previous choices
+    while(choices.lastChild){
+        choices.removeChild(choices.lastChild)
     }
 
     // gets the next question at random
@@ -61,19 +67,24 @@ function getNextQuestion(){
     // put it on the screen
     question.innerText = currentQuestion.question;
 
-    for(let i = 0; i < 4; i++){
-        choices[i].innerText = currentQuestion.choices[i];
+    // add choices to the screen dynamically
+    for(let i = 0; i < currentQuestion.choices.length; i++){
+        // create the p element
+        const choice = document.createElement("p");
+        choice.innerText = currentQuestion.choices[i];
+        choice.dataset.number = i + 1;
+
+        // add event listener
+        choice.addEventListener('click', event => {
+            // if choice correct, increase score
+            if(event.target.dataset["number"] == currentQuestion.answer + 1){ score++ };
+
+            getNextQuestion();
+        })
+
+        // add to parent "choices"
+        choices.appendChild(choice)
     }
-    // add to question count
+
     questionCount++;
 }
-
-// add event listeners
-choices.forEach(choice => {
-    choice.addEventListener('click', event => {
-        // if choice correct, increase score
-        if(event.target.dataset["number"] == currentQuestion.answer + 1){ score++ };
-
-        getNextQuestion();
-    })
-});
