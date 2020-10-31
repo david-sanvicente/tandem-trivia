@@ -30,5 +30,5 @@ fetch('Apprentice_TandemFor400_Data.json')
 function startGame(){
     const rand = Math.floor(Math.random() * questions.length)
     question.innerText = questions[rand].question;
-    console.log(questions)
+
 }
