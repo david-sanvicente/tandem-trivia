@@ -55,18 +55,13 @@ function getNextQuestion(){
     for(let i = 0; i < 4; i++){
         choices[i].innerText = currentQuestion.choices[i];
     }
-
-    // console.log(currentQuestion)
 }
 
 // add event listeners
 choices.forEach(choice => {
     choice.addEventListener('click', event => {
-        // console.log(event.target.dataset["number"], currentQuestion.answer + 1)
-        if(event.target.dataset["number"] == currentQuestion.answer){
-            console.log(true)
-        } else {
-            console.log(false)
-        }
+        // if choice correct, increase score
+        if(event.target.dataset["number"] == currentQuestion.answer){ score++ };
+        getNextQuestion();
     })
 });
