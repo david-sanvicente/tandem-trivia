@@ -28,7 +28,6 @@ fetch('Apprentice_TandemFor400_Data.json')
             loadedQuestion.choices.splice(rand, 0, answer)
             return loadedQuestion;
         })
-
         startGame();
     })
     .catch(err => console.dir(err))
@@ -75,13 +74,12 @@ function getNextQuestion(){
         choice.innerText = currentQuestion.choices[i];
         choice.dataset.number = i + 1;
         choice.classList.add("choice-text");
-        
         // add event listener
         choice.addEventListener('click', event => {
             // prevents user from selecting more than 1 answer
             if (!acceptingAnswers) return;
             acceptingAnswers = false;
-            
+
             // reveal correct answer
             let choices = Array.from(document.getElementsByClassName("choice-text"));
             choices.forEach(choice => {
@@ -92,7 +90,6 @@ function getNextQuestion(){
                     }, 1000)
                 }
             })
-
             // if choice correct, increase score
             if(event.target.dataset["number"] == currentQuestion.answer + 1){
                 score++ 
@@ -105,13 +102,9 @@ function getNextQuestion(){
                 event.target.parentElement.classList.remove("correct");
                 getNextQuestion();
             }, 1000);
-
-            
         })
-
         // add to parent "choices"
         choicesContainer.appendChild(choice)
     }
-
     questionCount++;
 }

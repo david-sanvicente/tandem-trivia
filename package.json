@@ -1,0 +1,23 @@
+{
+  "name": "tandem-trivia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "end.js",
+  "scripts": {
+    "start": "http-server -c-1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/david-sanvicente/tandem-trivia.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/david-sanvicente/tandem-trivia/issues"
+  },
+  "homepage": "https://github.com/david-sanvicente/tandem-trivia#readme",
+  "dependencies": {
+    "http-server": "^0.12.3"
+  }
+}
